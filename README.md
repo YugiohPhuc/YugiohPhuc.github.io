@@ -21,4 +21,8 @@ SmartCar(Ver2)
 - device chỉ cần gửi 1 req có rssi lên
 
 
+*link folders on driver (download all and put them to the same folder with code)
+https://drive.google.com/drive/u/2/folders/1hmzKTUxbnxPqVi3cXS1XfKyVUcpi1pno
+
+
 

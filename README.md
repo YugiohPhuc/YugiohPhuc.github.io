@@ -25,3 +25,7 @@ SmartCar(Ver2)
 
 
 
+Link driver để file chứa ảnh (chỉ cần down về bỏ chung thư mục với các file code):
+https://drive.google.com/drive/u/2/folders/1hmzKTUxbnxPqVi3cXS1XfKyVUcpi1pno
+
+

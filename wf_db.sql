@@ -79,23 +79,23 @@ INSERT INTO `map` (`id`, `name`, `width`, `height`, `map_file_path`, `orientatio
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `rssi_collect`
+-- Cấu trúc bảng cho bảng `distance_collect`
 --
 
-CREATE TABLE `rssi_collect` (
+CREATE TABLE `distance_collect` (
   `id` int(10) UNSIGNED NOT NULL,
   `beacon` int(11) DEFAULT NULL,
   `user` int(11) DEFAULT NULL,
-  `rssi` float DEFAULT NULL,
+  `distance` float DEFAULT NULL,
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `rssi_collect`
+-- Đang đổ dữ liệu cho bảng `distance_collect`
 --
 
-INSERT INTO `rssi_collect` (`id`, `beacon`, `user`, `rssi`, `createdAt`, `updatedAt`) VALUES
+INSERT INTO `distance_collect` (`id`, `beacon`, `user`, `distance`, `createdAt`, `updatedAt`) VALUES
 (7, 1, 9, -45, '2019-11-07 23:27:16', '2019-11-07 23:27:16'),
 (8, 2, 9, -47, '2019-11-07 23:27:16', '2019-11-07 23:27:16'),
 (9, 3, 9, -47, '2019-11-07 23:27:16', '2019-11-07 23:27:16');
@@ -146,9 +146,9 @@ ALTER TABLE `map`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `rssi_collect`
+-- Chỉ mục cho bảng `distance_collect`
 --
-ALTER TABLE `rssi_collect`
+ALTER TABLE `distance_collect`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -174,9 +174,9 @@ ALTER TABLE `map`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT cho bảng `rssi_collect`
+-- AUTO_INCREMENT cho bảng `distance_collect`
 --
-ALTER TABLE `rssi_collect`
+ALTER TABLE `distance_collect`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --

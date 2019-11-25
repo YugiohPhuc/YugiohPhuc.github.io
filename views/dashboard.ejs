@@ -1,0 +1,152 @@
+<!--                                       GIAO DIỆN BẢNG HIỆN RA SAU KHI LOGIN                                     -->
+<!--    *********************************************************************************************************    -->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="shortcut icon" href="/styles/mobirise/assets/images/111024-xe-tu-hanh.jpg" type="image/x-icon">
+  <title>AGV| Welcome back, <%= me.name %>!</title>
+  <!-- Viewport mobile tag for sensible mobile support -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!--STYLES-->
+  <link rel="stylesheet" href="/styles/angular-toastr.css">
+  <link rel="stylesheet" href="/styles/bootstrap.css">
+  <link rel="stylesheet" href="/styles/custom.css">
+  <link rel="stylesheet" href="/styles/importer.css">
+  <link rel="stylesheet" href="/styles/responsive.css">
+  <link rel="stylesheet" href="/styles/thumbnail-gallery.css">
+  <!--STYLES END-->
+
+  <link rel="stylesheet" href="/styles/dashboard/sb-admin.css">
+  <link href="/styles/dashboard/font-awesome.css" rel="stylesheet" type="text/css">
+
+  <!--Added this so the client has access to the csrf tag and it's grabbed first service side on every page -->
+  <script type="text/javascript">
+    window.SAILS_LOCALS = {
+      _csrf: '<%= _csrf %>',
+      me: <%- JSON.stringify(me) %>
+    };
+  </script>
+  <style type="text/css">
+            .body1{
+          # background: url('/styles/mobirise/assets/images/EasyJet_Engineer.jpg') no-repeat ;
+            #background-size: cover;
+        background-color: #D7D7D7;
+        }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+    <a class="navbar-brand" href="/">
+    <img src="/styles/mobirise/assets/images/111024-xe-tu-hanh.jpg" width="32px" height="32px" title="AGV" alt="AGV">    AGV</a>
+
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav navbar-sidenav" id="exampleAccordion" style="padding-top: 14px;">
+        <li id="demo-tab" class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
+          <a class="nav-link">
+            <i class="fa fa-fw fa-video-camera"></i>      <!--  đây là nơi để add icon thôi -->
+            <span class="nav-link-text">
+            Clip Demo</span>
+          </a>
+        </li>
+        <li id="database-tab" class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+          <a class="nav-link">
+            <i class="fa fa-fw fa-table"></i>
+            <span class="nav-link-text">
+            Điều khiển bằng Server</span>
+          </a>
+        </li>
+        
+        
+        <li id="canvas-tab" class="nav-item" data-toggle="tooltip" data-placement="right" title="Canvas">
+          <a class="nav-link">
+            <i class="fa fa-fw fa-area-chart"></i>
+            <span class="nav-link-text">
+            Vị trí thiết bị</span>
+          </a>
+        </li>
+
+        <li id="setting-tab" class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
+          <a class="nav-link">
+            <i class="fa fa-fw fa-link"></i>
+            <span class="nav-link-text">
+            Nhập tọa độ điểm cần đến</span>
+          </a>
+        </li>
+
+        <!-- <li id="setting-tab" class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
+          <a class="nav-link">
+            <i class="fa fa-fw fa-link"></i>
+            <span class="nav-link-text">
+            Cài đặt</span>
+          </a>
+        </li> -->
+
+      </ul>
+
+
+      <ul class="navbar-nav sidenav-toggler">
+        <li class="nav-item">
+          <a class="nav-link text-center" id="sidenavToggler">
+            <i class="fa fa-fw fa-angle-left"></i>
+          </a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item" >
+          <a class="nav-link" href="/logout">
+            <i class="fa fa-fw fa-sign-out"></i> Đăng xuất
+          </a>
+        </li>
+      </ul>
+    </div>
+
+  </nav>
+
+  <div class="content-wrapper">
+    <div class="container-fluid" style="padding-top: 50px">
+      <div id="demo" style="display: block;">
+        <% include tabview/demo %>    <!-- -->
+      </div>
+      <div id="database" style="display: none;">
+        <% include tabview/database %>
+      </div>
+      <div id="setting" style="display: none;">
+        <% include tabview/setting %>
+      </div>
+      <div id="canvas" style="display: none;">
+        <% include tabview/canvas %>
+      </div>
+    </div>
+  </div>
+
+  <!--SCRIPTS-->
+  <script src="/js/dependencies/sails.io.js"></script>
+  <script src="/js/dependencies/angular.1.3.js"></script>
+  <script src="/js/dependencies/angular-toastr.js"></script>
+  <script src="/js/dependencies/compareTo.module.js"></script>
+  <script src="/js/public/signup/SignupModule.js"></script>
+  <script src="/js/public/homepage/HomepageModule.js"></script>
+  <script src="/js/public/homepage/HomepageController.js"></script>
+  <script src="/js/public/signup/SignupController.js"></script>
+  <script src="/js/private/dashboard/jquery.min.js"></script>
+  <script src="/js/private/dashboard/popper.min.js"></script>
+  <script src="/js/private/dashboard/bootstrap.min.js"></script>
+  <script src="/js/private/dashboard/jquery.easing.min.js"></script>
+  <script src="/js/private/dashboard/jquery.dataTables.js"></script>
+  <script src="/js/private/dashboard/dataTables.bootstrap4.js"></script>
+  <script src="/js/private/dashboard/jquery.easing.compatibility.js"></script>
+  <script src="/js/private/dashboard/sb-admin.js"></script>
+  <!--SCRIPTS END-->
+  <script src="/js/private/dashboard/custom/tabSelect.js"></script>
+
+</body>
+</html>

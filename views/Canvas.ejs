@@ -1,0 +1,62 @@
+<!--                                                    DÙNG CANVAS                                                  -->
+<!--    *********************************************************************************************************    -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Canvas</title>
+  <style type="text/css">
+    .canvasMap{
+  display: flex;
+  margin-top: 10%;
+  justify-content: center;
+}
+.myMap{
+  position: relative;
+  width: 350px;
+  height: 350px;
+  margin-left: ;
+}
+body{
+}
+canvas{
+  position: absolute;
+  width: 350px;
+  height: 350px;
+} 
+  </style>
+</head>
+<body>
+  <div class="canvasMap"> 
+    <img src="/public/map/map2.png" alt="Map" class="myMap">
+    <canvas id="myCanvas"></canvas>
+  </div>
+
+  <script type="text/javascript">
+  //Lay doi tuong Canvas
+    var canvas = document.getElementById('myCanvas');
+    var radius =5;
+    var x = 31;
+    var y = 51;
+    //Chon doi tuong ve 2D
+    var context = canvas.getContext('2d');
+    context.beginPath();
+    context.arc(x, y, radius, 0, 2 * Math.PI);
+    context.strokeStyle = "#000";
+    context.stroke();
+    setInterval(function(){
+      context.beginPath();
+      context.clearRect(x - radius - 1, y - radius - 1, radius * 2 + 2, radius * 2 + 2);
+      x = 280 * Math.random();
+      y = 280 * Math.random();
+      console.log(x, y);
+      context.arc(x, y, radius, 0, 2 * Math.PI);
+      context.strokeStyle = "#000";
+      context.stroke();
+    },500);
+  </script>
+</body>
+
+</html>

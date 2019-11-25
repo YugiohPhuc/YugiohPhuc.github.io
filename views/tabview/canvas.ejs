@@ -1,0 +1,31 @@
+
+  <style type="text/css">
+    body{
+      background-color: 'white';
+    }
+    canvas{
+      margin-top: 30px;
+      background-image: url("/public/map/map2.png");    /* nơi add map vào*/
+      background-size: cover;
+      border: solid 1px;
+    }
+    .contentP{
+      margin-left: 30%;
+    } 
+    #myCanvas{
+      flex-grow: 1;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+  <div class="contentP">
+    <div class ="mindistance" style="display: flex;">
+      <div class="myCanvas">
+        <canvas id="myCanvas" width="720px" height="780px"></canvas>    <!-- chiều ngang: 720, chiều đứng 780 -->
+      </div> 
+    </div>
+  </div>
+
+<script src="/js/private/dashboard/jquery.min.js"></script>
+<script src="/js/private/query/QueryModule.js"></script>
+<script src="/js/private/query/QueryController.js"></script>

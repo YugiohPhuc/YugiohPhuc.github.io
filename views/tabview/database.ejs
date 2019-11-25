@@ -1,0 +1,231 @@
+<!--                             GIAO DIỆN CỦA TAB "ĐIỀU KHIỂN BẰNG SERVER" TRONG GIAO DIỆN SAU KHI LOG IN                      -->
+<!--    *********************************************************************************************************    -->
+
+
+<link rel="stylesheet" href="/styles/dashboard/database.css">
+<link rel="stylesheet" href="/styles/bootstrap.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<div id="main-table" ng-app="QueryModule" ng-controller="QueryController" ng-init="queryData()">
+    <input id="tab1" type="radio" name="tabs" style="display: none;" checked>
+    <label for="tab1">Nhập vào tọa độ điểm cần đến</label>
+    
+    <input id="tab2" type="radio" name="tabs" style="display: none;">
+    <label for="tab2">Tùy chọn mode</label>
+    
+    <input id="tab3" type="radio" name="tabs" style="display: none;">
+    <label for="tab3">Điều khiển</label>
+
+  
+    <section id="content1">         <!-- chọn điểm cần đến -->
+        <div class="container" style="padding-bottom: 80px">
+            <div class="card-header">
+                <i class="fa fa-table"></i>     <!-- để có cái hình trước cái tên thôi :)) -->
+                Nhập vào tọa độ điểm cần đến
+            </div>
+
+            <form action="http://localhost:70/posDestination">
+                Nhập vào tọa độ x: <input type="text" name="posDesX" value=""><br>
+                Nhập vào tọa độ y: <input type="text" name="posDesY" value=""><br><br>
+                <input type="submit" value="Gửi" class="btn btn-primary">       <!-- class="btn btn-primary" là để tạo kiểu cho nút nhấn :)) -->
+            </form>
+        </div>
+    </section>
+    
+    <section id="content2">         <!-- chọn chế độ cho server -->
+        <div class="container" style="padding-bottom: 80px">
+            <div class="card-header">
+                <i class="fa fa-table"></i>
+                Chọn mode
+            </div>
+        
+            <form action="http://localhost:70/chossemodeByServer">
+              <select name="controlMode">
+                <option value="1">mode 1</option>
+                <option value="2">mode 2</option>
+                <option value="3">mode 3</option><br><br>
+              </select>
+              <input type="submit" value="OK" class="btn btn-primary">       <!-- class="btn btn-primary" là để tạo kiểu cho nút nhấn :)) -->
+            </form>
+
+        </div>
+    </section>
+    
+    <section id="content3">         <!-- start, stop -->
+        <div class="container" style="padding-bottom: 80px">
+            <div class="card-header">
+                <i class="fa fa-table"></i>
+                Điều khiển
+            </div>
+           
+            <button id="start-button" class="btn btn-success" >START</button>
+
+            <script>                                    //dùng ajax để làm cái button
+                $("#start-button").click(function(){
+                    console.log("hello");
+                    $.ajax({
+                        url: "http://localhost:70/controlByServer",
+                        data: {
+                            "controlButton" : "1",
+                        },
+                        type: "PUT",         // if you want to send data via the "data" property change this to "POST". This can be omitted otherwise
+                        success: function(responseData) {
+                            console.log("Send successfully!");
+                        },
+                        error: console.error
+                    });
+                });
+            </script>          
+
+            <button id="stop-button" class="btn btn-danger" >STOP</button>
+
+            <script>                                    //dùng ajax để làm cái button
+                $("#stop-button").click(function(){
+                    console.log("hello");
+                    $.ajax({
+                        url: "http://localhost:70/controlByServer",
+                        data: {
+                            "controlButton" : "0",
+                        },
+                        type: "PUT",         // if you want to send data via the "data" property change this to "POST". This can be omitted otherwise
+                        success: function(responseData) {
+                            console.log("Send successfully!");      //console.log cái res ra để nó ko bị treo chỗ này
+                        },
+                        error: console.error
+                    });
+                });
+            </script>
+
+        </div>
+    </section>
+    
+</div>
+
+<!-- <div class="modal fade" id="beaconDialog" role="dialog">
+    <div class="modal-dialog">
+  
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <form method="post" action="createbeacon" onsubmit="return Beacon_Validate();" id="form-beacon">
+          <label for="name" class="control-label">Tên beacon</label>
+            <input title="Name" name="name" type="text" placeholder="e.g Beacon 01" class="form-control"> 
+          <label for="model" class="control-label">Model</label>
+            <input title="Model" name="model" type="text" placeholder="e.g TP-Link WR841ND" class="form-control">
+          <label for="map" class="control-label">Map</label>
+            <input title="Map" name="map" list="map-list" class="form-control">
+            <datalist id="map-list">
+            </datalist>
+          <label for="bssid" class="control-label">BSSID</label>
+            <input title="BSSID" name="bssid" type="text" placeholder="e.g 12:34:56:78:90:11" class="form-control">
+          <label for="ssid" class="control-label">SSID</label>
+            <input title="SSID" name="ssid" type="text" placeholder="e.g Beacon 1" class="form-control">
+          <label for="posX" class="control-label">Vị trí trục X</label>
+            <input title="Pos X" name="posX" type="text" placeholder="e.g 0.00" class="form-control"> 
+          <label for="posY" class="control-label">Vị trí trục Y</label>
+            <input title="Pos Y" name="posY" type="text" placeholder="e.g 0.00" class="form-control">    
+          <div style="margin-top: 20px"> 
+            <button type="submit" class="btn btn-primary">
+              Tạo mới
+            </button>
+            <button type="reset" class="btn btn-primary">
+              Đặt lại
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="mapDialog" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">TẠO MAP MỚI</h4>
+      </div>
+      <div class="modal-body">
+        <form method="post" action="createmap" onsubmit="return Map_Validate();" id="form-map" enctype="multipart/form-data">
+          <div>
+            <label for="name" class="control-label">Tên map</label>
+              <input title="Name" name="name" type="text" placeholder="e.g 0.00" class="form-control"> 
+            <label for="width" class="control-label">Chiều rộng</label>
+              <input title="Width" name="width" type="text" placeholder="e.g 0.00" class="form-control">
+            <label for="height" class="control-label">Chiều dài</label>
+              <input title="Height" name="height" type="text" placeholder="e.g 0.00" class="form-control">
+            <label for="map_file_path" class="control-label">File JPEG</label>
+            <div class="input-group">
+              <input title="File Path" type="text" class="form-control" style="height:48px" readonly>
+              <label class="input-group-btn">
+                <span class="btn btn-primary">
+                  Browse&hellip; 
+                  <input title="File Path Button" type="file" name="map_file_path" style="display: none;">
+                </span>
+              </label>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">
+            Tạo map mới
+          </button>
+          <button type="reset" class="btn btn-primary">
+            Đặt lại
+          </button> 
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="addproduct" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Thêm sản phẩm mới</h4>
+      </div>
+      <div class="modal-body">
+        <form method="post" action="createnewproduct" onsubmit="return Cluster_Validate();" id="form-cluster" enctype="multipart/form-data">
+          <div>
+            <label for="name" class="control-label">Tên sản phẩm</label>
+              <input title="Name" name="name" list="name-list" class="form-control">
+              <datalist id="beacon-list"></datalist>
+          </div>
+          <div>
+            <label for="model" class="control-label">Giá thành</label>
+              <input title="Model" name="model" list="model-list" class="form-control">
+              <datalist id=",model-list"></datalist>
+          </div>
+          <div>
+            <label for="mota" class="control-label">Mô tả</label>
+              <input title="mota" name="mota" list="mota-list" class="form-control">
+              <datalist id=",mota-list"></datalist>
+          </div>
+          <button type="submit" class="btn btn-primary" style="margin-top: 20px">
+            Thêm mới
+          </button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<script src="/js/dependencies/angular.1.3.js"></script>
+<script src="/js/dependencies/angular-toastr.js"></script>
+<script src="/js/dependencies/compareTo.module.js"></script>
+<script src="/js/private/query/QueryModule.js"></script>
+<script src="/js/private/query/QueryController.js"></script>
+<script src="/js/private/dashboard/jquery.min.js"></script>
+<script src="/js/private/dashboard/custom/databaseUtil.js"></script>

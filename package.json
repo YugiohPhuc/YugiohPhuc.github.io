@@ -22,7 +22,7 @@
     "include-all": "^1.0.0",
     "machinepack-gravatar": "^1.2.0",
     "machinepack-passwords": "^2.3.0",
-    "mathjs": "^3.16.5",
+    "mathjs": "^7.5.1",
     "rc": "1.0.1",
     "sails": "~0.12.13",
     "sails-disk": "~0.10.9",
